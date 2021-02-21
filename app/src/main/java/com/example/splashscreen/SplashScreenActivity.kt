@@ -1,5 +1,6 @@
 package com.example.splashscreen
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -14,7 +15,13 @@ class SplashScreenActivity : AppCompatActivity() {
         ButterKnife.bind(this)
 
         @BindView(R.id.iv_note)
-        iv_note.alpha = 0
+        iv_note.alpha = 0f
+        iv_note.animate().setDuration(1500).alpha(1f).withEndAction {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            finish()
+        }
 
 
 
